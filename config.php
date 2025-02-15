@@ -2,7 +2,7 @@
 
 return [
     'app' => [
-        'home_url' => 'http://localhost/php_basics'
+        'home_url' => 'http://localhost/To-Do-List-Project-'
     ],
     'database' => [
         'unix_socket' => '/opt/lampp/var/mysql/mysql.sock',
