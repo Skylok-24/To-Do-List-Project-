@@ -4,6 +4,9 @@ ini_set('display_errors', 1);
 
 require_once '_init.php';
 
+use App\Core\Router;
+use App\Core\Request;
+use App\Controllers\TaskController;
 //echo '<pre>';
 //print_r($_SERVER);
 //echo '</pre>';
@@ -24,7 +27,6 @@ require_once '_init.php';
 //    default : throw new  Exception('Page Not Found ! ');
 //             break;
 //}
-
 Router::make()
     ->get('',[TaskController::class , 'index'])
     ->get('about',[TaskController::class , 'about'])

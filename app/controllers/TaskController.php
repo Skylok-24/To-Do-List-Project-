@@ -1,20 +1,25 @@
 <?php
 
+namespace App\Controllers;
+
+use App\Core\Request;
+use App\Database\QueryBuilder;
+
 class TaskController
 {
     public function index()
     {
         $keyvalue = Request::get('completed');
         if ($keyvalue != null) {
-            $tasks = \app\data_base\QueryBuilder::get('tasks',['completed','=',$keyvalue]);
+            $tasks = QueryBuilder::get('tasks',['completed','=',$keyvalue]);
         }else
-            $tasks = \app\data_base\QueryBuilder::get('tasks');
+            $tasks = QueryBuilder::get('tasks');
         view('index',$tasks);
     }
 
     public function create()
     {
-        \app\data_base\QueryBuilder::insert('tasks',[
+        QueryBuilder::insert('tasks',[
             'description' => Request::get('description')
         ]);
 
@@ -29,7 +34,7 @@ class TaskController
     public function delete()
     {
         if ($id = Request::get('id')) {
-            \app\data_base\QueryBuilder::delete('tasks',$id);
+            QueryBuilder::delete('tasks',$id);
         }
 
         back();
@@ -39,7 +44,7 @@ class TaskController
         $id = Request::get('id');
         $completed = Request::get('completed');
         if ($id && $completed != null) {
-            \app\data_base\QueryBuilder::update('tasks',$id,[
+            QueryBuilder::update('tasks',$id,[
                 'completed' => $completed
             ]);
         }
